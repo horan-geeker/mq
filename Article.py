@@ -19,6 +19,8 @@ class Article(DocType):
     title = Text(analyzer='ik_max_word')
     content = Text(analyzer='ik_max_word')
     tags = Text(analyzer='ik_max_word')
+    thumbnail = Keyword()
+    created_at = Keyword()
 
     class Meta:
         index = 'posts'
@@ -33,6 +35,8 @@ class Article(DocType):
         article = Article()
         article.meta['id'] = data['id']
         article.title = data['title']
+        article.thumbnail = data['thumbnail']
+        article.created_at = data['created_at']
         article.content = data['content']
         article.tags = [data['tag']['type']]
         article.save()
